@@ -12,6 +12,7 @@
                 'resources/assets/css/style.css',
                 'resources/assets/images/favicon.png'
     ])
+    @yield('css')
   </head>
   <body>
     <div class="container-scroller">
@@ -340,7 +341,9 @@
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
@@ -349,7 +352,9 @@
                     <div class="preview-item-content">
                       <p class="preview-subject mb-1">Log out</p>
                     </div>
-                  </a>
+              </button>
+                </form>
+                  
                   <div class="dropdown-divider"></div>
                   <p class="p-3 mb-0 text-center">Advanced settings</p>
                 </div>
@@ -363,6 +368,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+            @yield('content')
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
@@ -380,14 +386,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <!-- @vite([
-    'resources/assets/vendors/js/vendor.bundle.base.js',
-                    'resources/assets/js/off-canvas.js',
-                    'resources/assets/js/hoverable-collapse.js',
-                    'resources/assets/js/misc.js',
-                    'resources/assets/js/settings.js',
-                    'resources/assets/js/todolist.js'
-   ]); -->
+       @yield('script')
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 
 <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
